@@ -3,7 +3,7 @@ import Task from "../models/task.model.js";
 // Create Task
 
 export const createTask = async (req, res) => {
-  const { title, description, status } = req.body;
+  const { title, description, status, userId } = req.body;
 //   const userId = req.user._id;
 
   try {
@@ -14,7 +14,7 @@ export const createTask = async (req, res) => {
       title,
       description,
       status,
-    //   user: userId,
+      userId,
     });
     if(newTask){
 
@@ -24,7 +24,8 @@ export const createTask = async (req, res) => {
         _id: newTask._id,
         title: newTask.title,
         description: newTask.description,
-        status: newTask.status
+        status: newTask.status,
+        userId:newTask.userId
       })
     }else {
       res.status(400).json({message: "Invalid user data"})

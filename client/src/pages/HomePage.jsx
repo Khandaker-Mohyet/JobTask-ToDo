@@ -1,8 +1,11 @@
 import React from 'react'
+import TaskInput from '../components/TaskInput'
 
 const HomePage = () => {
   return (
-    <div className='text-green-500'>HomePage</div>
+    <div className='mt-20'>
+      <TaskInput></TaskInput>
+    </div>
   )
 }
 
