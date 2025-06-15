@@ -4,7 +4,7 @@ import AllTasks from '../components/AllTasks'
 
 const HomePage = () => {
   return (
-    <div className='mt-20'>
+    <div className='py-16 h-svh'>
       <TaskInput></TaskInput>
       <AllTasks></AllTasks>
     </div>

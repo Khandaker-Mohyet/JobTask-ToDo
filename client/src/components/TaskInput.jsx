@@ -13,20 +13,26 @@ const TaskInput = () => {
         title: "",
         status: "",
         description: "",
-        userId:authUser._id
+        userId: authUser._id
     })
-    
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         postTask(formData)
         console.log(formData)
+        setFormData({
+            title: "",
+            status: "",
+            description: "",
+            userId: authUser._id
+        });
     }
 
 
     return (
         <div>
-            <div className="max-w-md border-2 border-green-500 rounded-lg shadow-lg bg-white p-6 mx-auto">
+            <div className="max-w-md rounded-lg shadow-lg p-6 mx-auto">
                 <form onSubmit={handleSubmit}>
                     <div className="space-y-4">
                         {/* First step */}
@@ -36,10 +42,11 @@ const TaskInput = () => {
                                 name="title"
                                 required
                                 placeholder="Title"
-                                className="input input-bordered input-success w-full p-3 rounded-lg border-2 border-green-400"
+                                className="input input-bordered input-sm w w-full p-3 rounded-lg border-2"
                                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                                value={formData.title}
                             />
-                            <select name="status" required className="select select-bordered select-success w-full p-3 rounded-lg border-2 border-green-400"
+                            <select name="status" required className="select select-bordered select-sm w-full  rounded-lg border-2 "
                                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
                             >
                                 <option disabled selected>status</option>
@@ -48,6 +55,10 @@ const TaskInput = () => {
                                 <option>Completed</option>
                             </select>
 
+                            <button className="btn btn-sm w-full md:w-auto px-6  font-semibold rounded-lg transition-all">
+                                Add Task
+                            </button>
+
                         </div>
                         {/* Second step */}
                         <div className="flex flex-col md:flex-row gap-4">
@@ -55,12 +66,11 @@ const TaskInput = () => {
                                 type="text"
                                 name="description"
                                 placeholder="Description"
-                                className="input input-bordered input-success w-full p-3 rounded-lg border-2 border-green-400"
+                                className="input input-bordered input-sm w w-full p-3 rounded-lg border-2"
                                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                                value={formData.description}
                             />
-                            <button className="btn btn-success w-full md:w-auto px-6 py-3 text-white font-semibold rounded-lg hover:bg-green-700 transition-all">
-                                Add Task
-                            </button>
+                            
                         </div>
                     </div>
                 </form>
