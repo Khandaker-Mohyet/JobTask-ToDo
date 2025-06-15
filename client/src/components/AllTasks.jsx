@@ -2,9 +2,10 @@ import React from 'react'
 import { useTaskStore } from '../store/useTaskStore';
 import { useEffect } from 'react';
 import { useAuthStore } from '../Store/useAuthStore';
+import { FilePenLine, Trash2 } from 'lucide-react';
 
 const AllTasks = () => {
-    const { allData, getTask } = useTaskStore();
+    const { allData, getTask, deleteTask } = useTaskStore();
     const { authUser } = useAuthStore()
     useEffect(() => {
         getTask();
@@ -17,6 +18,10 @@ const AllTasks = () => {
     const inProgressTasks = data.filter(task => task.status === "Inprogress");
     const doneTasks = data.filter(task => task.status === "Completed");
 
+    const handleDelete = (id) => {
+    deleteTask(id);
+  };
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* To-Do Section */}
@@ -25,10 +30,21 @@ const AllTasks = () => {
           {toDoTasks.map(task => (
             <p 
               key={task._id} 
-              className="cursor-pointer hover:text-green-400" 
+              className="cursor-pointer" 
             //   onClick={() => fetchTaskDetails(task._id)}
             >
-              <div className="bg-gray-700 p-2 mb-2 rounded">{task.title}</div>
+              <div className="bg-gray-700 p-2 mb-2 rounded">
+                <div className='flex justify-between border-b-[1px] '>
+                <div className='text-[16px] pb-1'>{task.title}</div>
+                <div className='flex gap-2'>
+                        <button ><FilePenLine className='size-4' /></button>
+                        <button ><Trash2
+                        onClick={()=>handleDelete(task._id)}
+                         className='size-4' /></button>
+                </div>
+                </div>
+                <div className='text-[12px] py-1'>{task.description}</div>
+                </div>
             </p>
           ))}
         </div>
@@ -39,10 +55,21 @@ const AllTasks = () => {
           {inProgressTasks.map(task => (
             <p 
               key={task._id} 
-              className="cursor-pointer hover:text-green-400" 
+              className="cursor-pointer" 
             //   onClick={() => fetchTaskDetails(task._id)}
             >
-              <div className="bg-yellow-700 p-2 mb-2 rounded">{task.title}</div>
+              <div className="bg-yellow-700 p-2 mb-2 rounded">
+                <div className='flex justify-between py-1 border-b-[1px]'>
+                <div className='text-[16px]'>{task.title}</div>
+                <div className='flex gap-2'>
+                        <button ><FilePenLine className='size-4' /></button>
+                        <button ><Trash2
+                        onClick={()=>handleDelete(task._id)}
+                         className='size-4' /></button>
+                </div>
+                </div>
+                <div className='text-[12px] py-1'>{task.description}</div>
+                </div>
             </p>
           ))}
         </div>
@@ -53,10 +80,21 @@ const AllTasks = () => {
           {doneTasks.map(task => (
             <p 
               key={task._id} 
-              className="cursor-pointer hover:text-green-400" 
+              className="cursor-pointer " 
             //   onClick={() => fetchTaskDetails(task._id)}
             >
-              <div className="bg-green-700 p-2 mb-2 rounded">{task.title}</div>
+               <div className="bg-green-700 p-2 mb-2 rounded">
+                <div className='flex justify-between py-1 border-b-[1px]'>
+                <div className='text-[16px]'>{task.title}</div>
+                <div className='flex gap-2'>
+                        <button ><FilePenLine className='size-4' /></button>
+                        <button ><Trash2
+                        onClick={()=>handleDelete(task._id)}
+                         className='size-4' /></button>
+                </div>
+                </div>
+                <div className='text-[12px] py-1'>{task.description}</div>
+                </div>
             </p>
           ))}
         </div>

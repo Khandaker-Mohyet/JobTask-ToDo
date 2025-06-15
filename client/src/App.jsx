@@ -30,7 +30,7 @@ const App = () => {
     );
 
   return (
-    <div data-theme={theme}>
+    <div data-theme={theme} className="h-svh">
       
       <Navbar></Navbar>
       <Routes>

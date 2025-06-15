@@ -32,7 +32,7 @@ const TaskInput = () => {
 
     return (
         <div>
-            <div className="max-w-md rounded-lg shadow-lg p-6 mx-auto">
+            <div className="max-w-md rounded-lg shadow-lg p-4 mx-auto">
                 <form onSubmit={handleSubmit}>
                     <div className="space-y-4">
                         {/* First step */}
