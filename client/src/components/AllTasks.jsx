@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTaskStore } from '../store/useTaskStore';
-import { useAuthStore } from '../Store/useAuthStore';
+import { useAuthStore } from '../store/useAuthStore.js';
 import { FilePenLine, Trash2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';

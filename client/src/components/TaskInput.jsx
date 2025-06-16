@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuthStore } from '../Store/useAuthStore';
+import { useAuthStore } from '../store/useAuthStore';
 import { useTaskStore } from '../store/useTaskStore';
 import { Calendar } from 'lucide-react';
 import DatePicker from "react-datepicker";
