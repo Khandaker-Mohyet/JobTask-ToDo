@@ -19,7 +19,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="h-full grid lg:grid-cols-2 pt-12">
+    <div className="min-h-screen grid lg:grid-cols-2 pt-12">
       {/* Left Side - Form */}
       <div className="flex flex-col justify-center items-center p-6 sm:p-12">
         <div className="w-full max-w-md space-y-8">
@@ -110,9 +110,9 @@ const LoginPage = () => {
       </div>
 
       {/* Right Side - Image/Pattern */}
-       <div className="text-center">
-      <Lottie className='w-[450px] h-full' animationData={lotty}></Lottie>
-    </div>
+      
+      <Lottie className='w-[550px] h-full mx-auto' animationData={lotty}></Lottie>
+    
     </div>
   );
 };

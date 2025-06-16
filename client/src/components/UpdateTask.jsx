@@ -11,7 +11,6 @@ const UpdateTask = () => {
     const navigate = useNavigate();
     const { authUser } = useAuthStore();
     const { updateTask } = useTaskStore();
-    const [startDate, setStartDate] = useState(null);
     const location = useLocation();
     const task = location.state?.task;
     const { _id, userId, title, status, lastDate, description } = task
@@ -31,7 +30,6 @@ const UpdateTask = () => {
         e.preventDefault();
         updateTask(_id, formData)
         console.log(formData)
-        setStartDate(null);
         navigate('/');
     }
 
@@ -55,6 +53,7 @@ const UpdateTask = () => {
                             <select
                                 name="status"
                                 required
+                                value={formData.status}
                                 className="select select-bordered select-sm w-full rounded-lg border-2"
                                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
                             >
@@ -89,7 +88,6 @@ const UpdateTask = () => {
                                     name="lastDate"
                                     placeholderText="Last Date"
                                     onChange={(date) => {
-                                        setStartDate(date);
                                         setFormData({ ...formData, lastDate: date });
                                     }}
                                     className="input input-bordered input-sm w-full p-3 rounded-lg border-2"

@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Eye, EyeOff, Loader2, Lock, Mail, FileCheck2, User} from "lucide-react";
+import { Eye, EyeOff, Loader2, Lock, Mail, FileCheck2, User } from "lucide-react";
 import { Link } from "react-router-dom";
+import Lottie from "lottie-react";
+import lotty from '../assets/register.json'
 
 
 import toast from "react-hot-toast";
@@ -36,7 +38,7 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="min-h-screen grid lg:grid-cols-2">
+    <div className="min-h-screen grid lg:grid-cols-2 pt-8">
       {/* left side */}
       <div className="flex flex-col justify-center items-center p-6 sm:p-12">
         <div className="w-full max-w-md space-y-8">
@@ -144,7 +146,9 @@ const SignUpPage = () => {
       </div>
 
       {/* right side */}
-
+      
+        <Lottie className='w-[400px] h-full mx-auto ' animationData={lotty}></Lottie>
+      
     </div>
   );
 };
