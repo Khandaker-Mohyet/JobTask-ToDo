@@ -6,7 +6,7 @@ import lotty from '../assets/register.json'
 
 
 import toast from "react-hot-toast";
-import { useAuthStore } from "../Store/useAuthStore.js";
+import { useAuthStore } from "../store/useAuthStore.js";
 
 
 const SignUpPage = () => {
