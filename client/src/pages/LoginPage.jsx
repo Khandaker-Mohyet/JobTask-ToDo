@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff, Loader2, Lock, Mail, FileCheck2 } from "lucide-react";
-import { useAuthStore } from "../Store/useAuthStore";
+import { useAuthStore } from "../store/useAuthStore.js";
 import lotty from '../assets/Login.json'
 import Lottie from "lottie-react";
 
