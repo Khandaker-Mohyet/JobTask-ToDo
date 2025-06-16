@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { axiosInstance } from "../lib/axios.js";
 import toast from "react-hot-toast";
 
-export const useTaskStore = create((set) => ({
+export const useTaskStore = create((set, get) => ({
 
     taskData: null,
     isPostTask: false,
@@ -45,11 +45,17 @@ export const useTaskStore = create((set) => ({
         }
     },
 
-    updateTask: async(taskId)=>{
-        try {
-            await axiosInstance.delete(`/tasks/${taskId}`);
-        } catch (error) {
-            toast.error(error.response?.data?.message || "Failed to delete task");
-        }
+    updateTask: async (taskId, data) => {
+    try {
+      const res = await axiosInstance.put(`/tasks/${taskId}`, data);
+      set({
+        allData: get().allData.map(task =>
+          task._id === taskId ? res.data : task
+        )
+      });
+      toast.success("Task updated");
+    } catch (error) {
+      toast.error("Update failed", error);
     }
+  },
 }))

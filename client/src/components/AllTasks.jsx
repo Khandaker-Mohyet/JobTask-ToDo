@@ -3,9 +3,10 @@ import { useTaskStore } from '../store/useTaskStore';
 import { useEffect } from 'react';
 import { useAuthStore } from '../Store/useAuthStore';
 import { FilePenLine, Trash2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const AllTasks = () => {
-    const { allData, getTask, deleteTask, updateTask } = useTaskStore();
+    const { allData, getTask, deleteTask } = useTaskStore();
     const { authUser } = useAuthStore()
     useEffect(() => {
         getTask();
@@ -22,9 +23,9 @@ const AllTasks = () => {
         deleteTask(id);
     };
 
-    const handleUpdate = (id) => {
-        updateTask(id)
-    }
+    // const UpdatePage = (id) => {
+    //     updatePage(id)
+    // }
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -47,9 +48,12 @@ const AllTasks = () => {
                                     })}
                                 </div>
                                 <div className='flex gap-2'>
-                                    <button ><FilePenLine
-                                        onClick={() => handleUpdate(task._id)}
-                                        className='size-4' /></button>
+                                    <button>
+                                        <Link to={`/updateTask/${task._id}`} state={{ task }}>
+                                    <FilePenLine
+                                        className='size-4' />
+                                    </Link>
+                                    </button>
                                     <button ><Trash2
                                         onClick={() => handleDelete(task._id)}
                                         className='size-4' /></button>
@@ -78,9 +82,12 @@ const AllTasks = () => {
                                         timeZone: "Asia/Dhaka"
                                     })}
                                 <div className='flex gap-2'>
-                                    <button ><FilePenLine
-                                        onClick={() => handleUpdate(task._id)}
-                                        className='size-4' /></button>
+                                    <button>
+                                        <Link to={`/updateTask/${task._id}`} state={{ task }}>
+                                    <FilePenLine
+                                        className='size-4' />
+                                    </Link>
+                                    </button>
                                     <button ><Trash2
                                         onClick={() => handleDelete(task._id)}
                                         className='size-4' /></button>
@@ -109,9 +116,12 @@ const AllTasks = () => {
                                         timeZone: "Asia/Dhaka"
                                     })}
                                 <div className='flex gap-2'>
-                                    <button ><FilePenLine
-                                        onClick={() => handleUpdate(task._id)}
-                                        className='size-4' /></button>
+                                    <button>
+                                        <Link to={`/updateTask/${task._id}`} state={{ task }}>
+                                    <FilePenLine
+                                        className='size-4' />
+                                    </Link>
+                                    </button>
                                     <button ><Trash2
                                         onClick={() => handleDelete(task._id)}
                                         className='size-4' /></button>

@@ -54,11 +54,10 @@ export const getUserTasks = async (req, res) => {
 // Update Task
 export const updateTask = async (req, res) => {
   const taskId = req.params.id;
-//   const userId = req.user._id;
-  const { title, description, status} = req.body;
+  const { title, description, status, lastDate } = req.body;
 
   try {
-    const task = await Task.findOne({ _id: taskId, });
+    const task = await Task.findById(taskId);
 
     if (!task) {
       return res.status(404).json({ message: "Task not found" });
@@ -67,16 +66,17 @@ export const updateTask = async (req, res) => {
     task.title = title || task.title;
     task.description = description || task.description;
     task.status = status || task.status;
-    // task.dueDate = dueDate || task.dueDate;
+    task.lastDate = lastDate || task.lastDate;
 
     await task.save();
 
     res.status(200).json(task);
   } catch (error) {
-    console.log("Error in updateTask:", error.message);
+    console.error("Error in updateTask:", error.message);
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
 
 // Delete Task
 export const deleteTask = async (req, res) => {
