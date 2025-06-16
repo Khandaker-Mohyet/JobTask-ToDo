@@ -1,6 +1,6 @@
 import { FileCheck2, LogOut, Settings, User } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useAuthStore } from "../Store/useAuthStore";
+import { useAuthStore } from "../store/useAuthStore.js";
 
 
 const Navbar = () => {
