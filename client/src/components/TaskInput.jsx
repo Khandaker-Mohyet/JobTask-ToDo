@@ -3,17 +3,22 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuthStore } from '../Store/useAuthStore';
 import { useTaskStore } from '../store/useTaskStore';
+import { Calendar } from 'lucide-react';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const TaskInput = () => {
 
     const { authUser } = useAuthStore();
     const { postTask } = useTaskStore();
+    const [startDate, setStartDate] = useState(null);
 
     const [formData, setFormData] = useState({
         title: "",
         status: "",
         description: "",
-        userId: authUser._id
+        userId: authUser._id,
+        lastDate: null
     })
 
 
@@ -23,10 +28,12 @@ const TaskInput = () => {
         console.log(formData)
         setFormData({
             title: "",
-            status: "",
+            status: null,
             description: "",
-            userId: authUser._id
+            userId: authUser._id,
+            lastDate: null
         });
+        setStartDate(null);
     }
 
 
@@ -46,13 +53,19 @@ const TaskInput = () => {
                                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                                 value={formData.title}
                             />
-                            <select name="status" required className="select select-bordered select-sm w-full  rounded-lg border-2 "
+                            <select
+                                name="status"
+                                required
+                                className="select select-bordered select-sm w-full rounded-lg border-2"
+                                value={formData.status || ""}
                                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
                             >
-                                <option disabled selected>status</option>
-                                <option>Todo</option>
-                                <option>Inprogress</option>
-                                <option>Completed</option>
+                                <option value="" disabled>
+                                    status
+                                </option>
+                                <option value="Todo">Todo</option>
+                                <option value="Inprogress">Inprogress</option>
+                                <option value="Completed">Completed</option>
                             </select>
 
                             <button className="btn btn-sm w-full md:w-auto px-6  font-semibold rounded-lg transition-all">
@@ -70,7 +83,18 @@ const TaskInput = () => {
                                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                                 value={formData.description}
                             />
-                            
+                            <div className="">
+                                <DatePicker
+                                    selected={startDate}
+                                    name="lastDate"
+                                    placeholderText="Last Date"
+                                    onChange={(date) => {
+                                        setStartDate(date);
+                                        setFormData({ ...formData, lastDate: date });
+                                    }}
+                                    className="input input-bordered input-sm w-full p-3 rounded-lg border-2"
+                                />
+                            </div>
                         </div>
                     </div>
                 </form>
