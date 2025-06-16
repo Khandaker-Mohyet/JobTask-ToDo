@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff, Loader2, Lock, Mail, FileCheck2 } from "lucide-react";
 import { useAuthStore } from "../Store/useAuthStore";
+import lotty from '../assets/Login.json'
+import Lottie from "lottie-react";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -17,7 +19,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="h-screen grid lg:grid-cols-2">
+    <div className="h-full grid lg:grid-cols-2 pt-12">
       {/* Left Side - Form */}
       <div className="flex flex-col justify-center items-center p-6 sm:p-12">
         <div className="w-full max-w-md space-y-8">
@@ -108,7 +110,9 @@ const LoginPage = () => {
       </div>
 
       {/* Right Side - Image/Pattern */}
-      
+       <div className="text-center">
+      <Lottie className='w-[450px] h-full' animationData={lotty}></Lottie>
+    </div>
     </div>
   );
 };

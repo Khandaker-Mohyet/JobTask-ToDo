@@ -13,6 +13,7 @@
     "@hello-pangea/dnd": "^18.0.1",
     "axios": "^1.10.0",
     "localforage": "^1.10.0",
+    "lottie-react": "^2.4.1",
     "lucide-react": "^0.515.0",
     "match-sorter": "^8.0.3",
     "react": "^19.1.0",

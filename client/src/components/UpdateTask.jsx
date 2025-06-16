@@ -37,7 +37,7 @@ const UpdateTask = () => {
 
 
     return (
-        <div className='pt-20'>
+        <div className='pt-24 h-svh'>
             <div className="max-w-md rounded-lg shadow-lg p-4 mx-auto">
                 <form onSubmit={handleUpdate}>
                     <div className="space-y-4">
