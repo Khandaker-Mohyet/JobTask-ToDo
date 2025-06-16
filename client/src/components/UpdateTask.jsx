@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../Store/useAuthStore';
 import { useTaskStore } from '../store/useTaskStore';
 import DatePicker from "react-datepicker";
@@ -21,15 +21,15 @@ const UpdateTask = () => {
     const [formData, setFormData] = useState({
         title: title,
         status: status,
-        description:description,
+        description: description,
         userId: authUser._id,
-        lastDate: lastDate
+        lastDate: new Date(lastDate),
     })
 
 
     const handleUpdate = async (e) => {
         e.preventDefault();
-        updateTask(_id,formData)
+        updateTask(_id, formData)
         console.log(formData)
         setStartDate(null);
         navigate('/');
@@ -56,7 +56,6 @@ const UpdateTask = () => {
                                 name="status"
                                 required
                                 className="select select-bordered select-sm w-full rounded-lg border-2"
-                                value={status}
                                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
                             >
                                 <option value="" disabled>
@@ -85,7 +84,8 @@ const UpdateTask = () => {
                             />
                             <div className="">
                                 <DatePicker
-                                    selected={startDate}
+                                    selected={formData.lastDate}
+                                    dateFormat="dd-MM-yyyy"
                                     name="lastDate"
                                     placeholderText="Last Date"
                                     onChange={(date) => {
@@ -99,7 +99,12 @@ const UpdateTask = () => {
                     </div>
                 </form>
             </div>
-            <div className="text-center">
+            <div className="flex justify-center items-center mt-4">
+                <Link className='flex' to={"/"}>
+                    <button className="justify-center btn btn-sm w-full md:w-auto px-6 font-semibold rounded-lg transition-all">
+                        Cancel
+                    </button>
+                </Link>
             </div>
         </div>
     );
