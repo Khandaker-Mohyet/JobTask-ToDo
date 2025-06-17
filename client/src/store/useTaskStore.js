@@ -11,7 +11,7 @@ export const useTaskStore = create((set, get) => ({
     postTask: async (data) => {
         set({ isPostTask: true });
         try {
-            const res = await axiosInstance.post("/tasks", data);
+            const res = await axiosInstance.post("/tasks/create", data);
             set((state) => ({
                 allData: [res.data, ...state.allData],
                 taskData: res.data
@@ -26,7 +26,7 @@ export const useTaskStore = create((set, get) => ({
 
     getTask: async () => {
         try {
-            const res = await axiosInstance.get("/tasks")
+            const res = await axiosInstance.get("/tasks/all")
             set({ allData: res.data });
         } catch (error) {
             toast.error(error.response.data.message)
@@ -35,7 +35,7 @@ export const useTaskStore = create((set, get) => ({
 
     deleteTask: async (taskId) => {
         try {
-            await axiosInstance.delete(`/tasks/${taskId}`);
+            await axiosInstance.delete(`/tasks/delete/${taskId}`);
             set((state) => ({
                 allData: state.allData.filter(task => task._id !== taskId)
             }));
@@ -47,7 +47,7 @@ export const useTaskStore = create((set, get) => ({
 
     updateTask: async (taskId, data) => {
     try {
-      const res = await axiosInstance.put(`/tasks/${taskId}`, data);
+      const res = await axiosInstance.put(`/tasks/update/${taskId}`, data);
       set({
         allData: get().allData.map(task =>
           task._id === taskId ? res.data : task
